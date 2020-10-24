@@ -14,8 +14,6 @@ class CountdownTimer {
     this.timerStatus = null;
     this.targetTime = targetDate.getTime();
     this.start();
-    refs.stop.addEventListener("click", this.stop.bind(this));
-    refs.resume.addEventListener("click", this.start.bind(this));
   }
   start() {
     if (this.timerStatus) {
@@ -59,7 +57,17 @@ class CountdownTimer {
   }
 }
 
-new CountdownTimer({
+const timer = new CountdownTimer({
   selector: "#timer-1",
   targetDate: new Date("Dec  31, 2022, 03:22:50"),
 });
+
+refs.stop.addEventListener("click", stopClick);
+refs.resume.addEventListener("click", resumeClick);
+
+function stopClick() {
+  timer.stop();
+}
+function resumeClick() {
+  timer.start();
+}
