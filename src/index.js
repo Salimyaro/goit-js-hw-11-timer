@@ -19,8 +19,7 @@ class CountdownTimer {
     if (this.timerStatus) {
       return;
     }
-    refs.resume.disabled = true;
-    refs.stop.disabled = false;
+    this.UpdateUI(this.setCounterUIData());
     this.timerStatus = true;
     this.timerIntarvalId = setInterval(() => {
       this.UpdateUI(this.setCounterUIData());
@@ -28,8 +27,6 @@ class CountdownTimer {
     console.log("TIMER Started");
   }
   stop() {
-    refs.resume.disabled = false;
-    refs.stop.disabled = true;
     clearInterval(this.timerIntarvalId);
     this.timerStatus = false;
     console.log("TIMER Stopped");
@@ -67,7 +64,11 @@ refs.resume.addEventListener("click", resumeClick);
 
 function stopClick() {
   timer.stop();
+  refs.resume.disabled = false;
+  refs.stop.disabled = true;
 }
 function resumeClick() {
   timer.start();
+  refs.resume.disabled = true;
+  refs.stop.disabled = false;
 }
