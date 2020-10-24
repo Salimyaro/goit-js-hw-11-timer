@@ -14,6 +14,7 @@ class CountdownTimer {
     this.timerStatus = null;
     this.targetTime = targetDate.getTime();
     this.start();
+    refs.resume.disabled = true;
   }
   start() {
     if (this.timerStatus) {
